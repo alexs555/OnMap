@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class AuthorizationController: BaseViewController {
 
@@ -46,38 +47,38 @@ class AuthorizationController: BaseViewController {
 
     @IBAction func loginPressed(sender: UIButton) {
         
-        
-        println("email  \(emailField.text)")
-        println("password  \(passwordField.text)")
-        
         showOverlayView()
-        Alamofire.request(UdacityRouter.SignIn(emailField.text, passwordField.text)).responseJSON { _, _, JSON, _ in
-            println(JSON)
+        Alamofire.request(UdacityRouter.SignIn(emailField.text, passwordField.text)).validate().response { (request, response, data, error)  in
+            
+            self.hideOverlay()
+            
+            if (response == nil) {
+                self.showAlertWithText(error!.localizedDescription)
+                return
+            }
+            
+            let newData = data!.subdataWithRange(NSMakeRange(5, data!.length - 5)) /* subset response data! */
+            let json = JSON(data: newData)
+            
+            if (json["status"] == 403) {
+                self.showAlertWithText("Email or password are wrong")
+            } else {
+                self.performSegueWithIdentifier("showContent", sender: nil)
+            }
+            
+            println(NSString(data: newData, encoding: NSUTF8StringEncoding))
+            
         }
-        
-        /*let UdacityProvider = MoyaProvider<UdacityAPI>(networkActivityClosure:{ (change: Moya.NetworkActivityChangeType) -> () in
-            
-            switch (change) {
-                case .Began:
-                    self.showOverlayView()
-                case .Ended:
-                    self.hideOverlay()
-            }
-            
-        })*/
-        
-        
-        /*UdacityProvider.request(.SignIn(email:emailField.text, password:passwordField.text)){ (data, statusCode, response, error) in
-            if let data = data {
-                // do something with the data
-                self.performSegueWithIdentifier("showContent", sender: self)
-                
-            }
-        }*/
-        
+    
     }
     
-  
+    func showAlertWithText(text:String) {
+        
+        var alert = UIAlertController(title: "Error", message: text, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+    }
     
     
 }

@@ -2,5 +2,6 @@
 platform :ios, ‘8.0’
 
 pod 'Moya'
+pod 'SwiftyJSON', '~> 2.2.1'
 
 use_frameworks!

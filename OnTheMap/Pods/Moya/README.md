@@ -1,4 +1,4 @@
-[![Circle CI](https://circleci.com/gh/ashfurrow/Moya.svg?style=svg)](https://circleci.com/gh/ashfurrow/Moya)
+[![Circle CI](https://circleci.com/gh/Moya/Moya.svg?style=svg)](https://circleci.com/gh/Moya/Moya)
 
 ![Moya Logo](web/moya_logo_github.png)
 
@@ -67,7 +67,7 @@ lines to your Podfile:
 pod 'Moya'
 
 # Include the following only if you want to use ReactiveCocoa extensions with Moya
-pod 'ReactiveCocoa', '3.0.0-beta.6'
+pod 'ReactiveCocoa', '3.0-beta.6'
 pod 'Moya/Reactive'
 ```
 
@@ -125,6 +125,28 @@ unsuccessful, you'll get an error on the signal. You also get handy methods for
 filtering out certain status codes. This means that you can place your code for 
 handling API errors like 400's in the same places as code for handling invalid 
 responses. 
+
+Contributing
+------------
+
+Hey! Like Moya? Awesome! We could actually really use your help! 
+
+Open source isn't just writing code. Moya could use your help with any of the 
+following:
+
+- Finding (and reporting!) bugs.
+- New feature suggestions.
+- Answering questions on issues.
+- Documentation improvements.
+- Reviewing pull requests.
+- Helping to manage issue priorities.
+- Fixing bugs/new features.
+
+If any of that sounds cool to you, send a pull request! After a few 
+contributions, we'll add you as admins to the repo so you can merge pull 
+requests :tada:
+
+Please note that this project is released with a Contributor Code of Conduct. By participating in this project you agree to abide by [its terms](https://github.com/Moya/code-of-conduct).
 
 License
 -------

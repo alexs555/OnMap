@@ -15,6 +15,8 @@ enum UdacityRouter: URLRequestConvertible {
     
     static let baseURLString = "https://www.udacity.com"
     
+   //static let baseURLString = "https://api.github.com"
+    
     case SignIn( String, String)
     
     // MARK: URLRequestConvertible
@@ -46,9 +48,9 @@ enum UdacityRouter: URLRequestConvertible {
                 
                 case .SignIn(let email, let password):
                     
-                    println()
+                    //return mutableURLRequest
                     
-                    return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: ["udacity": ["email": email, "password":  password]]).0
+                    return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: ["udacity": ["username": email, "password":  password]]).0
                 default:
                     return mutableURLRequest
             }
