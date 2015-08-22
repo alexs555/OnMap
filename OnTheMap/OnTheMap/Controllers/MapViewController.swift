@@ -12,6 +12,8 @@ import Moya
 class MapViewController: BaseViewController {
     
     
+    //@IBAction func logout(sender: UIBarButtonItem) {
+    //}
     override func viewDidLoad() {
         super.viewDidLoad()
    

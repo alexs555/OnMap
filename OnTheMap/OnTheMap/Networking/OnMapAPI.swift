@@ -17,7 +17,7 @@ enum UdacityRouter: URLRequestConvertible {
     
    //static let baseURLString = "https://api.github.com"
     
-    case SignIn( String, String)
+    case SignIn( String, String),Logout
     
     // MARK: URLRequestConvertible
     
@@ -25,17 +25,18 @@ enum UdacityRouter: URLRequestConvertible {
             switch self {
                 case .SignIn(let email, let password):
                     return .POST
-                }
+                case .Logout:
+                    return .DELETE
+            }
           
         }
         
         var path: String {
             switch self {
-
-                case .SignIn(let email, let password):
+                default:
                     return "/api/session"
-                }
-
+            }
+            
         }
             
         var URLRequest: NSURLRequest {
@@ -48,9 +49,19 @@ enum UdacityRouter: URLRequestConvertible {
                 
                 case .SignIn(let email, let password):
                     
-                    //return mutableURLRequest
-                    
                     return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: ["udacity": ["username": email, "password":  password]]).0
+                case .Logout:
+                
+                    var xsrfCookie: NSHTTPCookie? = nil
+                    let sharedCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+                    for cookie in sharedCookieStorage.cookies as! [NSHTTPCookie] {
+                        if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+                    }
+                    if let xsrfCookie = xsrfCookie {
+                        mutableURLRequest.setValue(xsrfCookie.value!, forHTTPHeaderField: "X-XSRF-TOKEN")
+                    }
+                    return mutableURLRequest;
+                
                 default:
                     return mutableURLRequest
             }

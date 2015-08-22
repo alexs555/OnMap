@@ -106,11 +106,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="7rp-pc-ing"/>
+                    <navigationItem key="navigationItem" id="7rp-pc-ing">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="x9U-CF-uTS">
+                            <connections>
+                                <action selector="logout:" destination="ynV-fg-1al" id="6SK-4c-M2t"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hah-uf-sEb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3131" y="650"/>
+            <point key="canvasLocation" x="3091" y="650"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="QQM-Lk-cmG">
@@ -125,7 +131,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="sb4-uk-9Nz"/>
+                    <navigationItem key="navigationItem" id="sb4-uk-9Nz">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="wam-YR-YJr">
+                            <connections>
+                                <action selector="logout:" destination="iSH-69-8qd" id="QUT-29-GLv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="if7-GV-cpa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -150,11 +162,11 @@
             </objects>
             <point key="canvasLocation" x="1320" y="238"/>
         </scene>
-        <!--Item 1-->
+        <!--Map-->
         <scene sceneID="i2S-eJ-3Ve">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MIv-Rj-1K1" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item 1" id="4jV-q7-lLx"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="map" id="4jV-q7-lLx"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dSB-DV-DAj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -167,13 +179,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jDX-dA-fBe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2279" y="-120"/>
+            <point key="canvasLocation" x="2257" y="-183"/>
         </scene>
-        <!--Item 2-->
+        <!--List-->
         <scene sceneID="Bav-Gz-4So">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hv2-Dl-qZr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item 2" id="jFD-aG-TWN"/>
+                    <tabBarItem key="tabBarItem" title="List" image="list" id="jFD-aG-TWN"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="KlX-1C-aZQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -186,10 +198,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Ig-XU-HCf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2319" y="650"/>
+            <point key="canvasLocation" x="2279" y="650"/>
         </scene>
     </scenes>
     <resources>
+        <image name="list" width="32" height="32"/>
+        <image name="map" width="32" height="32"/>
         <image name="udacity" width="256" height="256"/>
     </resources>
 </document>

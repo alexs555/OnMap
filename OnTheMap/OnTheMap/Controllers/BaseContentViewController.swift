@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class BaseViewController: UIViewController {
     
@@ -26,6 +27,15 @@ class BaseViewController: UIViewController {
     func hideOverlay() {
         
         view.viewWithTag(activityTag)?.removeFromSuperview()
+    }
+    
+    @IBAction func logout(sender: UIBarButtonItem) {
+        
+        Alamofire.request(UdacityRouter.Logout).response { (request, response, data, error)  in
+
+            self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+        
+        }
     }
 
 }
