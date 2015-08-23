@@ -40,13 +40,28 @@ class MapViewController: BaseViewController {
                     return info
                     
                 }
-                self.placePins()
-                
-                println(self.studentsInfoArray)
+                if (self.studentsInfoArray?.count > 0) {
+                    self.placePins()
+                    StudentsStorage.sharedInstance.addStudents(self.studentsInfoArray!)
+                } else {
+                    self.clear()
+                }
+                        
             }
             
         }
     
+    }
+    
+    func clear() {
+        
+        StudentsStorage.sharedInstance.clear()
+        
+        let userAnnotation = mapView.userLocation;
+        mapView.removeAnnotations(mapView.annotations)
+        if (userAnnotation != nil) {
+            mapView.addAnnotation(userAnnotation)
+        }
     }
     
     func placePins() {
@@ -57,6 +72,7 @@ class MapViewController: BaseViewController {
                 let dropPin = MKPointAnnotation()
                 dropPin.coordinate = location
                 dropPin.title = studentInfo.firstName
+                dropPin.subtitle = studentInfo.mediaUrl
                 mapView.addAnnotation(dropPin)
             }
         

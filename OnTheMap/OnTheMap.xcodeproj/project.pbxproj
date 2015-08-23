@@ -11,6 +11,7 @@
 		990C1E7D1B6EBEB10094B34B /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990C1E7C1B6EBEB10094B34B /* StudentInformation.swift */; };
 		990C1E821B8893F10094B34B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 990C1E811B8893F10094B34B /* MapKit.framework */; };
 		990C1E831B89BD150094B34B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9931BD461B6E6D9E0033EEF9 /* MapViewController.swift */; };
+		991E19741B89DCE50003D918 /* StudentsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991E19731B89DCE50003D918 /* StudentsStorage.swift */; };
 		9931BD421B6E51450033EEF9 /* OnMapAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9931BD411B6E51450033EEF9 /* OnMapAPI.swift */; };
 		9931BD451B6E6D800033EEF9 /* BaseContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9931BD441B6E6D800033EEF9 /* BaseContentViewController.swift */; };
 		9931BD491B6E6DCC0033EEF9 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9931BD481B6E6DCC0033EEF9 /* ListViewController.swift */; };
@@ -38,6 +39,7 @@
 		6B1BF8767FA4C3AC9BA0D2C4 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		990C1E7C1B6EBEB10094B34B /* StudentInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StudentInformation.swift; path = Models/StudentInformation.swift; sourceTree = "<group>"; };
 		990C1E811B8893F10094B34B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		991E19731B89DCE50003D918 /* StudentsStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StudentsStorage.swift; path = Models/StudentsStorage.swift; sourceTree = "<group>"; };
 		9931BD411B6E51450033EEF9 /* OnMapAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnMapAPI.swift; path = Networking/OnMapAPI.swift; sourceTree = "<group>"; };
 		9931BD441B6E6D800033EEF9 /* BaseContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseContentViewController.swift; path = Controllers/BaseContentViewController.swift; sourceTree = "<group>"; };
 		9931BD461B6E6D9E0033EEF9 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = Controllers/MapViewController.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				990C1E7C1B6EBEB10094B34B /* StudentInformation.swift */,
+				991E19731B89DCE50003D918 /* StudentsStorage.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				99ED3EE61B6E1A7D00BDFF8E /* AuthorizationController.swift in Sources */,
 				9931BD421B6E51450033EEF9 /* OnMapAPI.swift in Sources */,
 				9931BD491B6E6DCC0033EEF9 /* ListViewController.swift in Sources */,
+				991E19741B89DCE50003D918 /* StudentsStorage.swift in Sources */,
 				99ED3EE41B6E1A7D00BDFF8E /* AppDelegate.swift in Sources */,
 				9931BD451B6E6D800033EEF9 /* BaseContentViewController.swift in Sources */,
 				990C1E7D1B6EBEB10094B34B /* StudentInformation.swift in Sources */,
