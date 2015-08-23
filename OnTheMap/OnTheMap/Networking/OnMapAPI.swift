@@ -32,10 +32,7 @@ enum UdacityRouter: URLRequestConvertible {
         }
         
         var path: String {
-            switch self {
-                default:
-                    return "/api/session"
-            }
+            return "/api/session"
             
         }
             
@@ -72,145 +69,46 @@ enum UdacityRouter: URLRequestConvertible {
 
 // MARK: - Parse API Support
 
-/*public enum ParseAPI {
+enum ParseRouter : URLRequestConvertible {
     
-    case Locations(limit: Int)
-}
-
-extension ParseAPI : MoyaPath {
+    static let baseURLString = "https://api.parse.com/1/classes"
     
-    public var path: String {
+    case Locations, CreateLocation
+    
+    var method: Alamofire.Method {
         
-        switch (self) {
-        case .Locations:
-            return "/1/classes/StudentLocation"
-        }
-    }
-}
-
-
-extension ParseAPI : MoyaTarget {
-    
-    public var base: String { return "https://api.parse.com" }
-    public var baseURL: NSURL { return NSURL(string: base)! }
-    
-    public var parameters: [String: AnyObject] {
         switch self {
             
-        case .Locations(let limit):
-            return ["order": "-updatedAt","limit":limit]
-        default:
-            return [:]
-        }
-    }
-    
-    public var method: Moya.Method {
-        switch self {
-            
-        case .Locations(let limit):
-            return .GET
-        default:
-            return .GET
-        }
-    }
-    
-    public var sampleData: NSData {
-        
-        return NSData()
-    }
-    
-}
-
-// MARK: - Udacity API Support
-
-public enum UdacityAPI {
-    
-    case SignIn(email: String, password: String)
-    
-}
-
-extension UdacityAPI : MoyaPath {
-    
-    public var path: String {
-        
-        switch (self) {
-        case .SignIn:
-            return "/api/session"
-        }
-    }
-}
-
-
-extension UdacityAPI : MoyaTarget {
-    
-    public var base: String { return "https://www.udacity.com" }
-    public var baseURL: NSURL { return NSURL(string: base)! }
-    
-    public var parameters: [String: AnyObject] {
-        switch self {
-            
-            case .SignIn(let email, let password):
-                return ["udacity": ["email": email, "password":  password]]
+            case .Locations:
+                return .GET
             default:
-                return [:]
-            }
+                return .GET
+        }
     }
     
-    public var method: Moya.Method {
+    var path: String {
+        return "/StudentLocation"
+        
+    }
+    
+    var URLRequest: NSURLRequest {
+        
+        let URL = NSURL(string: ParseRouter.baseURLString)!
+        let mutableURLRequest = NSMutableURLRequest(URL: URL.URLByAppendingPathComponent(path))
+        mutableURLRequest.HTTPMethod = method.rawValue
+        mutableURLRequest.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
+        mutableURLRequest.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
         switch self {
             
-        case .SignIn(let email, let password):
-            return .GET
-        default:
-            return .GET
-        }
-    }
-    
-    public var sampleData: NSData {
-     
-        return NSData()
-    }
-
-}
-
-
-public class ParseProvider<T where T: MoyaTarget>: MoyaProvider<T> {
-    
-      public init(endpointsClosure: MoyaEndpointsClosure = MoyaProvider.DefaultEndpointMapping(),  networkActivityClosure: Moya.NetworkActivityClosure? = nil) {
-
-                super.init(endpointsClosure:endpointsClosure)
-        }
-}
-
-public struct Provider {
-    private static var endpointsClosure = { (target: ParseAPI) -> Endpoint<ParseAPI> in
-        
-        var endpoint: Endpoint<ParseAPI> = Endpoint<ParseAPI>(URL: url(target), sampleResponse: .Success(200, {target.sampleData}), method: target.method, parameters: target.parameters)
-
-            return endpoint.endpointByAddingHTTPHeaderFields(["X-Xapp-Token": ""])
-        
-    }
-    
-    public static func DefaultProvider() -> ParseProvider<ParseAPI> {
-        return ParseProvider(endpointsClosure: endpointsClosure)
-    }
-    
-
-    private struct SharedProvider {
-        static var instance = Provider.DefaultProvider()
-    }
-    
-    public static var sharedProvider: ParseProvider<ParseAPI> {
-        get {
-            return SharedProvider.instance
+            case .Locations:
+            
+            //return mutableURLRequest
+                return Alamofire.ParameterEncoding.URL.encode(mutableURLRequest, parameters: ["limit":100,"order":"-updatedAt"]).0
+            default:
+                return mutableURLRequest
         }
         
-        set (newSharedProvider) {
-            SharedProvider.instance = newSharedProvider
-        }
     }
+    
+    
 }
-
-public func url(route: MoyaTarget) -> String {
-    return route.baseURL.URLByAppendingPathComponent(route.path).absoluteString!
-}*/

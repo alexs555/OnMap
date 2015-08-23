@@ -8,44 +8,59 @@
 
 import UIKit
 import Moya
+import Alamofire
+import SwiftyJSON
+import MapKit
 
 class MapViewController: BaseViewController {
     
+    @IBOutlet weak var mapView: MKMapView!
     
-    //@IBAction func logout(sender: UIBarButtonItem) {
-    //}
     override func viewDidLoad() {
         super.viewDidLoad()
-   
-     /*   var endpointsClosure = { (target: ParseAPI) -> Endpoint<ParseAPI> in
-            
-            var endpoint: Endpoint<ParseAPI> = Endpoint<ParseAPI>(URL: url(target), sampleResponse: .Success(200, {target.sampleData}), method: target.method, parameters: target.parameters)
-            
-            return endpoint.endpointByAddingHTTPHeaderFields(["X-Parse-Application-Id": "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr","X-Parse-REST-API-Key":"QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"])
-            
-        }*/
         
-        /*let ParseProvider = MoyaProvider<ParseAPI>(endpointsClosure:endpointsClosure ,networkActivityClosure:{ (change: Moya.NetworkActivityChangeType) -> () in
+        showOverlayView()
+        Alamofire.request(ParseRouter.Locations).responseJSON(options: NSJSONReadingOptions.AllowFragments) { (request, response, resultJSON, error) in
             
-            switch (change) {
-            case .Began:
-                self.showOverlayView()
-            case .Ended:
-                self.hideOverlay()
+            self.hideOverlay()
+            
+            if (error != nil) {
+                self.showAlertWithText("Loading failed")
+                return
             }
             
-        })*/
-        
-       /* ParseProvider.request(.Locations(limit:100)){ (data, statusCode, response, error) in
-            if let data = data {
-                // do something with the data
-                ParseProvider.mapCollection(Location.self, data: data)
-                println(NSString(data: data, encoding: NSUTF8StringEncoding))
+            if (resultJSON != nil) {
                 
+                let results = JSON(resultJSON!)["results"]
+                
+                self.studentsInfoArray = results.array?.map {
+                    
+                    (var studentJsonInfo) -> StudentInformation in
+                    var info = StudentInformation(json:studentJsonInfo)
+                    return info
+                    
+                }
+                self.placePins()
+                
+                println(self.studentsInfoArray)
             }
-        }*/
-        
+            
+        }
     
     }
-
+    
+    func placePins() {
+        
+        for  studentInfo: StudentInformation in studentsInfoArray! {
+            
+                let location = CLLocationCoordinate2DMake(studentInfo.latitude!,studentInfo.longitude!)
+                let dropPin = MKPointAnnotation()
+                dropPin.coordinate = location
+                dropPin.title = studentInfo.firstName
+                mapView.addAnnotation(dropPin)
+            }
+        
+        }
+    
+      
 }

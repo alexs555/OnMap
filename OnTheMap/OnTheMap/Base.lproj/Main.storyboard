@@ -129,7 +129,21 @@
                     <view key="view" contentMode="scaleToFill" id="bKg-DQ-LVK">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="itj-jF-Ve7">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <connections>
+                                    <outlet property="delegate" destination="iSH-69-8qd" id="LhC-dx-Fmg"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="itj-jF-Ve7" firstAttribute="top" secondItem="bKg-DQ-LVK" secondAttribute="top" id="W3m-mQ-0H2"/>
+                            <constraint firstAttribute="bottom" secondItem="itj-jF-Ve7" secondAttribute="bottom" id="iHW-5d-cRu"/>
+                            <constraint firstItem="itj-jF-Ve7" firstAttribute="leading" secondItem="bKg-DQ-LVK" secondAttribute="leading" id="jnJ-5a-WRk"/>
+                            <constraint firstAttribute="trailing" secondItem="itj-jF-Ve7" secondAttribute="trailing" id="wuo-cb-niq"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="sb4-uk-9Nz">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="wam-YR-YJr">
@@ -138,6 +152,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="itj-jF-Ve7" id="bf3-cm-3PF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="if7-GV-cpa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

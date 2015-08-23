@@ -12,6 +12,7 @@ import Alamofire
 class BaseViewController: UIViewController {
     
     var activityTag = 555
+    public var studentsInfoArray : Array<StudentInformation>?
 
     func showOverlayView() {
         
@@ -36,6 +37,14 @@ class BaseViewController: UIViewController {
             self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
         
         }
+    }
+    
+    func showAlertWithText(text:String) {
+        
+        var alert = UIAlertController(title: "Error", message: text, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+        
     }
 
 }

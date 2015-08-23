@@ -18,7 +18,6 @@ class AuthorizationController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
         configureTextFields()
         
@@ -72,13 +71,7 @@ class AuthorizationController: BaseViewController {
     
     }
     
-    func showAlertWithText(text:String) {
-        
-        var alert = UIAlertController(title: "Error", message: text, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
-        
-    }
+    
     
     
 }
