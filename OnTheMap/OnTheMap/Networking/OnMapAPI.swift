@@ -9,6 +9,7 @@
 import Foundation
 import Moya
 import Alamofire
+import MapKit
 
 
 enum UdacityRouter: URLRequestConvertible {
@@ -17,7 +18,7 @@ enum UdacityRouter: URLRequestConvertible {
     
    //static let baseURLString = "https://api.github.com"
     
-    case SignIn( String, String),Logout
+    case SignIn( String, String),Logout, GetUser(String)
     
     // MARK: URLRequestConvertible
     
@@ -27,12 +28,22 @@ enum UdacityRouter: URLRequestConvertible {
                     return .POST
                 case .Logout:
                     return .DELETE
+                case .GetUser(let userId):
+                    return .GET
             }
           
         }
         
         var path: String {
-            return "/api/session"
+            
+            switch self {
+                case .SignIn(let email, let password):
+                    return "/api/session"
+                case .Logout:
+                    return "/api/session"
+                case .GetUser(let userId):
+                    return String(format: "/api/users/%@", userId)
+            }
             
         }
             
@@ -58,7 +69,6 @@ enum UdacityRouter: URLRequestConvertible {
                         mutableURLRequest.setValue(xsrfCookie.value!, forHTTPHeaderField: "X-XSRF-TOKEN")
                     }
                     return mutableURLRequest;
-                
                 default:
                     return mutableURLRequest
             }
@@ -73,7 +83,7 @@ enum ParseRouter : URLRequestConvertible {
     
     static let baseURLString = "https://api.parse.com/1/classes"
     
-    case Locations, CreateLocation
+    case Locations, CreateLocation(String,String,CLLocationCoordinate2D)
     
     var method: Alamofire.Method {
         
@@ -81,6 +91,8 @@ enum ParseRouter : URLRequestConvertible {
             
             case .Locations:
                 return .GET
+            case let .CreateLocation(mapString, mediaUrl, coordinates):
+                return .POST
             default:
                 return .GET
         }
@@ -101,9 +113,16 @@ enum ParseRouter : URLRequestConvertible {
         switch self {
             
             case .Locations:
-            
-            //return mutableURLRequest
                 return Alamofire.ParameterEncoding.URL.encode(mutableURLRequest, parameters: ["limit":100,"order":"-updatedAt"]).0
+            case let .CreateLocation(mapString, mediaUrl, coordinates):
+                return Alamofire.ParameterEncoding.URL.encode(mutableURLRequest, parameters:
+                    ["uniqueKey":CurrentUser.sharedInstance.userId!,
+                    "firstName":CurrentUser.sharedInstance.firstName!,
+                    "lastName":CurrentUser.sharedInstance.lastName!,
+                    "mapString":mapString,
+                    "mediaURL":mediaUrl,
+                    "latitude":coordinates.latitude,
+                    "longitude":coordinates.longitude]).0
             default:
                 return mutableURLRequest
         }

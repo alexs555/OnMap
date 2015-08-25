@@ -62,16 +62,33 @@ class AuthorizationController: BaseViewController {
             if (json["status"] == 403) {
                 self.showAlertWithText("Email or password are wrong")
             } else {
-                self.performSegueWithIdentifier("showContent", sender: nil)
+                
+                let userId = json["account"]["key"].string!
+                self.loadUser(userId)
             }
-            
-            println(NSString(data: newData, encoding: NSUTF8StringEncoding))
-            
+                        
         }
     
     }
     
-    
+    func loadUser(userId:String) {
+        
+        Alamofire.request(UdacityRouter.GetUser(userId)).response { (request, response, data, error)  in
+            
+            if (response == nil) {
+                self.showAlertWithText(error!.localizedDescription)
+                return
+            }
+            
+            let userData = data!.subdataWithRange(NSMakeRange(5, data!.length - 5)) /* subset response data! */
+            let jsonUser = JSON(data: userData)
+            CurrentUser.sharedInstance.updateWithFirstName(jsonUser["firstName"].string, lastName:jsonUser["lastName"].string, userId:userId)
+            
+            println(jsonUser)
+            self.performSegueWithIdentifier("showContent", sender: nil)
+        }
+        
+    }
     
     
 }

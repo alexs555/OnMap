@@ -19,8 +19,14 @@ class MapViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadStudents()
+        
+    }
+    
+    func loadStudents() {
+        
         showOverlayView()
-        Alamofire.request(ParseRouter.Locations).responseJSON(options: NSJSONReadingOptions.AllowFragments) { (request, response, resultJSON, error) in
+        Alamofire.request(ParseRouter.Locations).responseJSON() { (request, response, resultJSON, error) in
             
             self.hideOverlay()
             
@@ -46,11 +52,11 @@ class MapViewController: BaseViewController {
                 } else {
                     self.clear()
                 }
-                        
+                
             }
             
         }
-    
+
     }
     
     func clear() {

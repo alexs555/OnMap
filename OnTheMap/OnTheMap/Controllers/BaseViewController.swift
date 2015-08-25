@@ -12,7 +12,28 @@ import Alamofire
 class BaseViewController: UIViewController {
     
     var activityTag = 555
-    public var studentsInfoArray : Array<StudentInformation>?
+    var studentsInfoArray : Array<StudentInformation>?
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        customizeNavigationBar()
+    }
+    
+    private func customizeNavigationBar() {
+        
+        var button: UIButton = UIButton()
+        button.setImage(UIImage(named: "pin"), forState: .Normal)
+        button.frame = CGRectMake(0, 0, 45, 45)
+        button.addTarget( self, action: "showInformation", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        var placeLocation:UIBarButtonItem = UIBarButtonItem()
+        placeLocation.customView = button
+        
+        var refresh = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Refresh, target: self, action: "refresh")
+        navigationItem.rightBarButtonItems = [refresh,placeLocation]
+    }
 
     func showOverlayView() {
         
@@ -45,6 +66,16 @@ class BaseViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
         
+    }
+    
+    func refresh() {
+        
+        //override in subclasses
+    }
+    
+    func showInformation() {
+        
+        performSegueWithIdentifier("showInformation", sender: self)
     }
 
 }
