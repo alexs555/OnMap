@@ -51,13 +51,15 @@ class UserInformationController: BaseViewController, UITextFieldDelegate {
     
     func geocode(location:String) {
         
+        showOverlayView()
         var geocoder = CLGeocoder()
         geocoder.geocodeAddressString(location, completionHandler: {(placemarks: [AnyObject]!, error: NSError!) -> Void in
             
             self.hideOverlay()
             if let placemark = placemarks?[0] as? CLPlacemark {
-
                 self.performSegueWithIdentifier("showMap", sender: placemark)
+            } else {
+                self.showAlertWithText("Geocodig failed!")
             }
         })
     }
