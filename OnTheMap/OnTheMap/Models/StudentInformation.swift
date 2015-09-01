@@ -27,7 +27,7 @@ struct StudentInformation {
         firstName = json["firstName"].string
         lastName = json["lastName"].string
         mapString = json["mapString"].string
-        mediaUrl = json["mediaUrl"].string
+        mediaUrl = json["mediaURL"].string
         latitude = json["latitude"].double
         longitude = json["longitude"].double
         

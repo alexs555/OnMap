@@ -16,8 +16,6 @@ enum UdacityRouter: URLRequestConvertible {
     
     static let baseURLString = "https://www.udacity.com"
     
-   //static let baseURLString = "https://api.github.com"
-    
     case SignIn( String, String),Logout, GetUser(String)
     
     // MARK: URLRequestConvertible

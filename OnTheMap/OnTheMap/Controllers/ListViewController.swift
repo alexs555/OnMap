@@ -10,8 +10,6 @@ import UIKit
 
 class ListViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
    
-   // @IBAction func logout(sender: UIBarButtonItem) {
-    //}
     
     // MARK: - Table view data source
     

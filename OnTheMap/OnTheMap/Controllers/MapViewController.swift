@@ -38,7 +38,7 @@ class MapViewController: BaseViewController {
             if (resultJSON != nil) {
                 
                 let results = JSON(resultJSON!)["results"]
-                
+                                
                 self.studentsInfoArray = results.array?.map {
                     
                     (var studentJsonInfo) -> StudentInformation in
@@ -58,6 +58,7 @@ class MapViewController: BaseViewController {
         }
 
     }
+    
     
     func clear() {
         
@@ -86,9 +87,27 @@ class MapViewController: BaseViewController {
                 dropPin.title = studentInfo.firstName
                 dropPin.subtitle = studentInfo.mediaUrl
                 mapView.addAnnotation(dropPin)
-            }
-        
         }
+        
+    }
     
+    //MARK: Mapview delegate
+    
+    func mapView(mapView: MKMapView!, viewForAnnotation: MKAnnotation!) -> MKAnnotationView! {
+        
+       var annotationView = MKPinAnnotationView(annotation: viewForAnnotation, reuseIdentifier: "loc")
+        annotationView.canShowCallout = true
+        annotationView.rightCalloutAccessoryView = UIButton.buttonWithType(UIButtonType.InfoLight) as! UIView;
+        return annotationView;
+        
+    }
+
+    func mapView(mapView: MKMapView!, annotationView: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
+        
+        if let media = annotationView.annotation.subtitle {
+            var url = NSURL(string: media)
+            UIApplication.sharedApplication().openURL(url!)
+        }
+    }
       
 }

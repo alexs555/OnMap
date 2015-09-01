@@ -23,11 +23,6 @@ class AuthorizationController: BaseViewController {
         
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     func configureTextFields() {
         
         passwordField.backgroundColor = UIColor(white: 1, alpha: 0.5)
@@ -84,10 +79,6 @@ class AuthorizationController: BaseViewController {
             let jsonUser = JSON(data: userData)
             CurrentUser.sharedInstance.updateWithFirstName(jsonUser["user"]["nickname"].string, lastName:jsonUser["user"]["last_name"].string, userId:userId)
             
-            println(jsonUser["user"]["nickname"])
-            println(jsonUser["user"]["last_name"])
-            
-            println(jsonUser)
             self.performSegueWithIdentifier("showContent", sender: nil)
         }
         

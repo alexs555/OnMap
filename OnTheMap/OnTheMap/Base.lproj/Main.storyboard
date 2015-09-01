@@ -256,6 +256,9 @@
                             </button>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="CxX-V3-YRr">
                                 <rect key="frame" x="0.0" y="170" width="600" height="430"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vTo-V7-BCZ" id="p0g-Mr-dbH"/>
+                                </connections>
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R87-AL-Pnd">
                                 <rect key="frame" x="0.0" y="500" width="600" height="100"/>

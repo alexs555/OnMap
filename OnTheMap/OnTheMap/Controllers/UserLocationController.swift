@@ -75,7 +75,7 @@ class UserLocationController: BaseViewController, UITextFieldDelegate {
         }
         
        showOverlayView()
-       Alamofire.request(ParseRouter.CreateLocation(textField.text,placeMark!.name!,mapView.region.center)).responseJSON(options:NSJSONReadingOptions.AllowFragments , completionHandler: { (request, response, jsonResponse, error) in
+       Alamofire.request(ParseRouter.CreateLocation(placeMark!.name!, textField.text, mapView.region.center)).responseJSON(options:NSJSONReadingOptions.AllowFragments , completionHandler: { (request, response, jsonResponse, error) in
         
                self.hideOverlay()
         
