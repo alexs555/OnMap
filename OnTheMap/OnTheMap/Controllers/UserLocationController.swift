@@ -47,11 +47,6 @@ class UserLocationController: BaseViewController, UITextFieldDelegate {
         textField.attributedPlaceholder = string
         textField.textColor = UIColor.whiteColor()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     let regionRadius: CLLocationDistance = 500
     func centerMapOnLocation(location: CLLocation) {
