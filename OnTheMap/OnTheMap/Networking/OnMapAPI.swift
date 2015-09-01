@@ -115,7 +115,7 @@ enum ParseRouter : URLRequestConvertible {
             case .Locations:
                 return Alamofire.ParameterEncoding.URL.encode(mutableURLRequest, parameters: ["limit":100,"order":"-updatedAt"]).0
             case let .CreateLocation(mapString, mediaUrl, coordinates):
-                return Alamofire.ParameterEncoding.URL.encode(mutableURLRequest, parameters:
+                return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters:
                     ["uniqueKey":CurrentUser.sharedInstance.userId!,
                     "firstName":CurrentUser.sharedInstance.firstName!,
                     "lastName":CurrentUser.sharedInstance.lastName!,

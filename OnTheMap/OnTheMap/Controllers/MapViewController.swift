@@ -70,6 +70,12 @@ class MapViewController: BaseViewController {
         }
     }
     
+    
+    override func refresh() {
+        
+        loadStudents()
+    }
+    
     func placePins() {
         
         for  studentInfo: StudentInformation in studentsInfoArray! {

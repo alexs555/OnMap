@@ -8,6 +8,8 @@
 
 import UIKit
 import MapKit
+import Alamofire
+import SwiftyJSON
 
 class UserLocationController: BaseViewController, UITextFieldDelegate {
     @IBOutlet weak var mapView: MKMapView!
@@ -67,6 +69,25 @@ class UserLocationController: BaseViewController, UITextFieldDelegate {
     }
     @IBAction func submit(sender: AnyObject) {
         
+        if (textField.text.isEmpty) {
+            self.showAlertWithText("Enter a link to share, please!")
+            return;
+        }
+        
+       showOverlayView()
+       Alamofire.request(ParseRouter.CreateLocation(textField.text,placeMark!.name!,mapView.region.center)).responseJSON(options:NSJSONReadingOptions.AllowFragments , completionHandler: { (request, response, jsonResponse, error) in
+        
+               self.hideOverlay()
+        
+               let result = JSON(jsonResponse!)
+        
+               if (result["error"].string != nil) {
+                    self.showAlertWithText(result["error"].string!)
+               } else {
+                    self.dismiss(self)
+            }
+        
+       })
         
     }
     

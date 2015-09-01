@@ -79,10 +79,13 @@ class AuthorizationController: BaseViewController {
                 self.showAlertWithText(error!.localizedDescription)
                 return
             }
-            
+
             let userData = data!.subdataWithRange(NSMakeRange(5, data!.length - 5)) /* subset response data! */
             let jsonUser = JSON(data: userData)
-            CurrentUser.sharedInstance.updateWithFirstName(jsonUser["firstName"].string, lastName:jsonUser["lastName"].string, userId:userId)
+            CurrentUser.sharedInstance.updateWithFirstName(jsonUser["user"]["nickname"].string, lastName:jsonUser["user"]["last_name"].string, userId:userId)
+            
+            println(jsonUser["user"]["nickname"])
+            println(jsonUser["user"]["last_name"])
             
             println(jsonUser)
             self.performSegueWithIdentifier("showContent", sender: nil)
