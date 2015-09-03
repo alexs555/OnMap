@@ -11,6 +11,7 @@
 		990C1E7D1B6EBEB10094B34B /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990C1E7C1B6EBEB10094B34B /* StudentInformation.swift */; };
 		990C1E821B8893F10094B34B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 990C1E811B8893F10094B34B /* MapKit.framework */; };
 		990C1E831B89BD150094B34B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9931BD461B6E6D9E0033EEF9 /* MapViewController.swift */; };
+		991B6CE21B98E074008B4719 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991B6CE11B98E074008B4719 /* Reachability.swift */; };
 		991E19741B89DCE50003D918 /* StudentsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991E19731B89DCE50003D918 /* StudentsStorage.swift */; };
 		991E19761B89E8D30003D918 /* UserInformationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991E19751B89E8D30003D918 /* UserInformationController.swift */; };
 		991E19781B89FFFA0003D918 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 991E19771B89FFFA0003D918 /* CoreLocation.framework */; };
@@ -43,6 +44,7 @@
 		6B1BF8767FA4C3AC9BA0D2C4 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		990C1E7C1B6EBEB10094B34B /* StudentInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StudentInformation.swift; path = Models/StudentInformation.swift; sourceTree = "<group>"; };
 		990C1E811B8893F10094B34B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		991B6CE11B98E074008B4719 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = Networking/Reachability.swift; sourceTree = "<group>"; };
 		991E19731B89DCE50003D918 /* StudentsStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StudentsStorage.swift; path = Models/StudentsStorage.swift; sourceTree = "<group>"; };
 		991E19751B89E8D30003D918 /* UserInformationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserInformationController.swift; path = Controllers/UserInformationController.swift; sourceTree = "<group>"; };
 		991E19771B89FFFA0003D918 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -116,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				9931BD411B6E51450033EEF9 /* OnMapAPI.swift */,
+				991B6CE11B98E074008B4719 /* Reachability.swift */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 			files = (
 				990C1E831B89BD150094B34B /* MapViewController.swift in Sources */,
 				99ED3EE61B6E1A7D00BDFF8E /* AuthorizationController.swift in Sources */,
+				991B6CE21B98E074008B4719 /* Reachability.swift in Sources */,
 				991E197C1B8D02E80003D918 /* CurrentUser.swift in Sources */,
 				9931BD421B6E51450033EEF9 /* OnMapAPI.swift in Sources */,
 				991E19761B89E8D30003D918 /* UserInformationController.swift in Sources */,

@@ -29,5 +29,14 @@ class ListViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         return cell
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if let info = StudentsStorage.sharedInstance.studentForIndexPath(indexPath) {
+            if let stringUrl = info.mediaUrl {
+               var url = NSURL(string: stringUrl)
+               UIApplication.sharedApplication().openURL(url!)
+            }
+        }
+    }
     
 }

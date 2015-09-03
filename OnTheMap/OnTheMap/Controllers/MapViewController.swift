@@ -16,12 +16,13 @@ class MapViewController: BaseViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
         loadStudents()
-        
     }
+    
     
     func loadStudents() {
         

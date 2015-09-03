@@ -11,6 +11,7 @@ import MapKit
 import Alamofire
 import SwiftyJSON
 
+
 class UserLocationController: BaseViewController, UITextFieldDelegate {
     @IBOutlet weak var mapView: MKMapView!
 
@@ -69,6 +70,11 @@ class UserLocationController: BaseViewController, UITextFieldDelegate {
             return;
         }
         
+        if (!Reachability.isConnectedToNetwork()) {
+            self.showAlertWithText("There is no internet connection!")
+            return;
+        }
+        
        showOverlayView()
        Alamofire.request(ParseRouter.CreateLocation(placeMark!.name!, textField.text, mapView.region.center)).responseJSON(options:NSJSONReadingOptions.AllowFragments , completionHandler: { (request, response, jsonResponse, error) in
         
@@ -78,6 +84,8 @@ class UserLocationController: BaseViewController, UITextFieldDelegate {
                 
                 if let errorText  = JSON(response)["error"].string  {
                     self.showAlertWithText(errorText)
+                } else {
+                    self.dismiss(self)
                 }
                 
               } else {
