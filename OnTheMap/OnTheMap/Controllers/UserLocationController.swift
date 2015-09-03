@@ -72,15 +72,17 @@ class UserLocationController: BaseViewController, UITextFieldDelegate {
        showOverlayView()
        Alamofire.request(ParseRouter.CreateLocation(placeMark!.name!, textField.text, mapView.region.center)).responseJSON(options:NSJSONReadingOptions.AllowFragments , completionHandler: { (request, response, jsonResponse, error) in
         
-               self.hideOverlay()
+              self.hideOverlay()
         
-               let result = JSON(jsonResponse!)
-        
-               if (result["error"].string != nil) {
-                    self.showAlertWithText(result["error"].string!)
-               } else {
-                    self.dismiss(self)
-            }
+              if let response: AnyObject = jsonResponse {
+                
+                if let errorText  = JSON(response)["error"].string  {
+                    self.showAlertWithText(errorText)
+                }
+                
+              } else {
+                self.dismiss(self)
+              }
         
        })
         

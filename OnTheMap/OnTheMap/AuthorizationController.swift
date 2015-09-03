@@ -58,8 +58,10 @@ class AuthorizationController: BaseViewController {
                 self.showAlertWithText("Email or password are wrong")
             } else {
                 
-                let userId = json["account"]["key"].string!
-                self.loadUser(userId)
+                if let userId = json["account"]["key"].string {
+                    self.loadUser(userId)
+                }
+            
             }
                         
         }

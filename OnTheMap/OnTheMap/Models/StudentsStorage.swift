@@ -17,7 +17,6 @@ class StudentsStorage {
     func addStudents(students:[StudentInformation]!) {
         
         studentsArray = students
-        studentsArray.sort({ $0.firstName < $1.firstName })
     }
     
     func studentCount() -> Int {
